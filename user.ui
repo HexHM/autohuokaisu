@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="emblem-shared"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(223, 32, 112);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="readCarCardLineEdit">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>180</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(32, 75, 70);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Lue ajokortin viivakoodi</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="takeCarPushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>291</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Tallentaa henkilön tiedot tietokantaa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>3000</number>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 127);</string>
+    </property>
+    <property name="text">
+     <string>LAINAA</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="keyPictureLabel">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>280</y>
+      <width>171</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/keys.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="teacherPictureLabel">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>-10</y>
+      <width>201</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../kopio/uiPictures/teacher.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="returnCarPushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>291</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Tallentaa henkilön tiedot tietokantaa&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>3000</number>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 127);</string>
+    </property>
+    <property name="text">
+     <string>Palauta</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="readKeyLineEdit">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>400</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(32, 75, 70);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string>Lue avaimen viivakoodi</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="resetPushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>291</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 33, 72);
+color: rgb(255, 255, 255);
+alternate-background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
+    <property name="icon">
+     <iconset theme="QIcon::ThemeIcon::EditUndo"/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="resetPushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>291</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 33, 72);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
+    <property name="icon">
+     <iconset theme="edit-undo"/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="soundPushButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>-20</y>
+      <width>191</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="userUiRescources.qrc">
+      <normaloff>:/pictures/uiPictures/sound.png</normaloff>:/pictures/uiPictures/sound.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>131</width>
+      <height>131</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="soundOffPushButton">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>-20</y>
+      <width>191</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="userUiRescources.qrc">
+      <normaloff>:/pictures/uiPictures/soundOff.png</normaloff>:/pictures/uiPictures/soundOff.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>131</width>
+      <height>131</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="rentLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>291</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>LAINAA</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="returnLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>291</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);
+color: rgb(0, 0, 0);</string>
+    </property>
+    <property name="text">
+     <string>Palauta</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="okButtonLabel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>180</y>
+      <width>171</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 33, 72);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="personInfoLabel">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>230</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="carInfoLabel">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>450</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cardReadLabel">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>180</y>
+      <width>271</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 127);</string>
+    </property>
+    <property name="text">
+     <string>Ajokortti Luettu</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>resetPushButton</zorder>
+   <zorder>returnLabel</zorder>
+   <zorder>resetPushButton_2</zorder>
+   <zorder>rentLabel</zorder>
+   <zorder>readCarCardLineEdit</zorder>
+   <zorder>takeCarPushButton</zorder>
+   <zorder>keyPictureLabel</zorder>
+   <zorder>teacherPictureLabel</zorder>
+   <zorder>returnCarPushButton</zorder>
+   <zorder>readKeyLineEdit</zorder>
+   <zorder>soundPushButton</zorder>
+   <zorder>soundOffPushButton</zorder>
+   <zorder>okButtonLabel</zorder>
+   <zorder>personInfoLabel</zorder>
+   <zorder>carInfoLabel</zorder>
+   <zorder>cardReadLabel</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="font">
+    <font>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="toolTipDuration">
+    <number>3000</number>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+background-color: rgb(0, 33, 72);
+color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <action name="actionLopeta">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
+   <property name="text">
+    <string>Lopeta</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionKalle">
+   <property name="text">
+    <string>Kalle</string>
+   </property>
+  </action>
+  <action name="actionVille">
+   <property name="text">
+    <string>Ville</string>
+   </property>
+  </action>
+  <action name="actionJaana">
+   <property name="text">
+    <string>Jaana</string>
+   </property>
+  </action>
+  <action name="actionMikko">
+   <property name="text">
+    <string>Mikko</string>
+   </property>
+  </action>
+  <action name="actionTallenna_nimell">
+   <property name="text">
+    <string>Tallenna nimellä...</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="userUiRescources.qrc"/>
+  <include location="../Autolainaustesti/userUIRescources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>takeCarPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>returnCarPushButton</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>166</x>
+     <y>223</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>178</x>
+     <y>354</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>takeCarPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>takeCarPushButton</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>131</x>
+     <y>67</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>154</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>takeCarPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>returnLabel</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>98</x>
+     <y>244</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>57</x>
+     <y>356</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>returnCarPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>rentLabel</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>355</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>39</x>
+     <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>soundPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>readCarCardLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>404</x>
+     <y>138</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>518</x>
+     <y>192</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>soundOffPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>readCarCardLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>485</x>
+     <y>117</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>551</x>
+     <y>193</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>soundPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>readKeyLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>420</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>547</x>
+     <y>424</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>soundOffPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>readKeyLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>471</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>514</x>
+     <y>417</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>soundOffPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>soundOffPushButton</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>505</x>
+     <y>93</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>soundPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>soundOffPushButton</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>373</x>
+     <y>102</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>467</x>
+     <y>135</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>readCarCardLineEdit</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>cardReadLabel</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>762</x>
+     <y>186</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>773</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

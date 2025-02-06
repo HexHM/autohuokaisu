@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="pictures">
+    <file>uiPictures/soundOff.png</file>
+    <file>uiPictures/sound.png</file>
+    <file>uiPictures/Teacher.png</file>
+    <file>uiPictures/keys.png</file>
+  </qresource>
+</RCC>
