@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="png">
+    <file>teacher.png</file>
+    <file>LainaajaStudent.png</file>
+    <file>Avaimet.png</file>
+  </qresource>
+</RCC>

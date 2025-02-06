@@ -1,0 +1,25 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram name="Page-1" id="LUMhqCeEjPLuG31W3qSJ">
+    <mxGraphModel dx="1434" dy="956" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Nr4wXi_Kh9J-_Lrvl492-2" value="" style="image;html=1;image=img/lib/clip_art/people/Worker_Black_128x128.png" parent="1" vertex="1">
+          <mxGeometry x="265" y="40" width="215" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="Nr4wXi_Kh9J-_Lrvl492-3" value="" style="image;html=1;image=img/lib/clip_art/general/Keys_128x128.png" parent="1" vertex="1">
+          <mxGeometry x="510" y="120" width="195" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Nr4wXi_Kh9J-_Lrvl492-4" value="" style="image;html=1;image=img/lib/clip_art/people/Farmer_Man_128x128.png" parent="1" vertex="1">
+          <mxGeometry x="70" y="50" width="215" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="xeI1ki88yzmFSzl8Rv86-1" value="" style="image;html=1;image=img/lib/clip_art/general/Tire_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="690" y="350" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xeI1ki88yzmFSzl8Rv86-2" value="" style="image;html=1;image=img/lib/clip_art/general/Tire_128x128.png;flipH=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="350" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

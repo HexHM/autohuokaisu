@@ -1,0 +1,1 @@
+from lendingmodules import barcode
