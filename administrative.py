@@ -138,7 +138,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.groupComboBox.clear()
         self.ui.groupComboBox.addItems(groupStringList)
 
-    # Lainaajat-taulukon päivitys
+    # Lainaaja-taulukon päivitys
     def updateLenderTableWidget(self):
         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
@@ -149,7 +149,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dbConnection = dbOperations.DbConnection(dbSettings)
 
         # Tehdään lista lainaaja-taulun tiedoista
-        tableData = dbConnection.readAllColumnsFromTable('lainaajat')
+        tableData = dbConnection.readAllColumnsFromTable('lainaaja')
         print('Lainaajataulun tiedot:', tableData)
 
         # Määritellään taulukkoelementin otsikot

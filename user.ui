@@ -26,9 +26,9 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>540</x>
       <y>180</y>
-      <width>271</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -44,6 +44,9 @@ color: rgb(32, 75, 70);</string>
     <property name="text">
      <string/>
     </property>
+    <property name="echoMode">
+     <enum>QLineEdit::EchoMode::NoEcho</enum>
+    </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
@@ -51,13 +54,13 @@ color: rgb(32, 75, 70);</string>
      <string>Lue ajokortin viivakoodi</string>
     </property>
     <property name="clearButtonEnabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="takeCarPushButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>20</y>
       <width>291</width>
       <height>231</height>
@@ -89,8 +92,8 @@ background-color: rgb(255, 255, 127);</string>
    <widget class="QLabel" name="keyPictureLabel">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>280</y>
+      <x>610</x>
+      <y>290</y>
       <width>171</width>
       <height>111</height>
      </rect>
@@ -111,7 +114,7 @@ background-color: rgb(255, 255, 127);</string>
    <widget class="QLabel" name="teacherPictureLabel">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>590</x>
       <y>-10</y>
       <width>201</width>
       <height>191</height>
@@ -121,7 +124,7 @@ background-color: rgb(255, 255, 127);</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../kopio/uiPictures/teacher.png</pixmap>
+     <pixmap resource="userUiRescources.qrc">:/pictures/uiPictures/Teacher.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -130,8 +133,8 @@ background-color: rgb(255, 255, 127);</string>
    <widget class="QPushButton" name="returnCarPushButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>280</y>
+      <x>10</x>
+      <y>270</y>
       <width>291</width>
       <height>231</height>
      </rect>
@@ -165,9 +168,9 @@ background-color: rgb(255, 255, 127);</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>400</y>
-      <width>271</width>
+      <x>540</x>
+      <y>420</y>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -183,6 +186,9 @@ color: rgb(32, 75, 70);</string>
     <property name="text">
      <string/>
     </property>
+    <property name="frame">
+     <bool>true</bool>
+    </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
@@ -190,14 +196,14 @@ color: rgb(32, 75, 70);</string>
      <string>Lue avaimen viivakoodi</string>
     </property>
     <property name="clearButtonEnabled">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="resetPushButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>280</y>
+      <x>10</x>
+      <y>270</y>
       <width>291</width>
       <height>231</height>
      </rect>
@@ -222,7 +228,7 @@ alternate-background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="resetPushButton_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>20</y>
       <width>291</width>
       <height>231</height>
@@ -247,10 +253,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="soundPushButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>-20</y>
-      <width>191</width>
-      <height>191</height>
+      <x>310</x>
+      <y>0</y>
+      <width>201</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="text">
@@ -270,10 +276,10 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="soundOffPushButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>-20</y>
-      <width>191</width>
-      <height>191</height>
+      <x>310</x>
+      <y>0</y>
+      <width>201</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="text">
@@ -293,7 +299,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="rentLabel">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>20</y>
       <width>291</width>
       <height>231</height>
@@ -322,8 +328,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="returnLabel">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>280</y>
+      <x>10</x>
+      <y>270</y>
       <width>291</width>
       <height>231</height>
      </rect>
@@ -351,10 +357,10 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="okButtonLabel">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>180</y>
-      <width>171</width>
-      <height>331</height>
+      <x>310</x>
+      <y>160</y>
+      <width>211</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="font">
@@ -373,9 +379,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="personInfoLabel">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>540</x>
       <y>230</y>
-      <width>271</width>
+      <width>241</width>
       <height>41</height>
      </rect>
     </property>
@@ -394,9 +400,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="carInfoLabel">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>450</y>
-      <width>271</width>
+      <x>540</x>
+      <y>470</y>
+      <width>241</width>
       <height>41</height>
      </rect>
     </property>
@@ -415,9 +421,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="cardReadLabel">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>540</x>
       <y>180</y>
-      <width>271</width>
+      <width>251</width>
       <height>41</height>
      </rect>
     </property>
@@ -439,6 +445,87 @@ color: rgb(255, 255, 255);</string>
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QFrame" name="availableCarFrame">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>160</y>
+      <width>221</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QPlainTextEdit" name="carNamePlainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>221</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Plain</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string>Vapaat ajoneuvot:</string>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="inUseCarPlainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>221</width>
+       <height>341</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Plain</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string>Ajossa:</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>soundPushButton</zorder>
+   <zorder>soundOffPushButton</zorder>
    <zorder>resetPushButton</zorder>
    <zorder>returnLabel</zorder>
    <zorder>resetPushButton_2</zorder>
@@ -449,12 +536,11 @@ color: rgb(255, 255, 255);</string>
    <zorder>teacherPictureLabel</zorder>
    <zorder>returnCarPushButton</zorder>
    <zorder>readKeyLineEdit</zorder>
-   <zorder>soundPushButton</zorder>
-   <zorder>soundOffPushButton</zorder>
    <zorder>okButtonLabel</zorder>
    <zorder>personInfoLabel</zorder>
    <zorder>carInfoLabel</zorder>
    <zorder>cardReadLabel</zorder>
+   <zorder>availableCarFrame</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar">
    <property name="font">
@@ -510,7 +596,7 @@ color: rgb(255, 255, 255);</string>
  </widget>
  <resources>
   <include location="userUiRescources.qrc"/>
-  <include location="../Autolainaustesti/userUIRescources.qrc"/>
+  <include location="userUiRescources.qrc"/>
  </resources>
  <connections>
   <connection>

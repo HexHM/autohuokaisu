@@ -12,6 +12,7 @@ import json
 
 from PySide6 import QtWidgets # Qt-vimpaimet
 from lendingmodules import sound, cipher, dbOperations
+from PySide6.QtCore import QThreadPool, Slot # Säikeistys ja Slot-dekoraattori
 
 
 # mainWindow_ui:n tialle käännetyn pääikkunan tiedoston nimi
@@ -26,6 +27,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Määritellään olionmuodostin ja kutsutaan yliluokkien muodostimia
     def __init__(self):
         super().__init__()
+
+        # Luodanan säikeistystä varten uusi säievavanto
+        self.threadPool = QThreadPool()
 
         # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
         self.ui = Ui_MainWindow()
@@ -42,6 +46,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.carInfoLabel.hide()
         self.ui.personInfoLabel.hide()
         self.ui.cardReadLabel.hide()
+        self.ui.inUseCarPlainTextEdit.hide()
         
             # Rutiini, joka lukee asetukset, jos ne ovat olemassa
         try:
@@ -56,7 +61,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except Exception as error:
             self.openWarning()
 
-        self.soundOn = True
+        self.soundOn = False
         
 
         # OHJELMOIDUT SIGNAALIT
@@ -70,8 +75,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.resetPushButton.clicked.connect(self.resetWindowdef)
         self.ui.resetPushButton_2.clicked.connect(self.resetWindowdef)
         self.ui.returnCarPushButton.clicked.connect(self.returnCar)
-        self.ui.readKeyLineEdit.returnPressed.connect(self.okPushButton)  
-        
+        self.ui.readKeyLineEdit.returnPressed.connect(self.okPushButton) 
+        self.ui.soundOffPushButton.clicked.connect(self.unMute)
+        self.ui.soundPushButton.clicked.connect(self.mute)
         
         
         message= 'Aloita painamalla nappia'
@@ -81,6 +87,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
    
     # OHJELMOIDUT SLOTIT
     # ------------------
+    
+    # Soita parametrina annettu äänitiedosto
+    @Slot(str)
+    def playSoundFile(self, soundFileName):
+        fileAndPath = 'sounds\\' + soundFileName
+        sound.playWav(fileAndPath)
+    
+    @Slot(str)
+    def playSoundInThread(self, soundFileName):
+        self.threadPool.start(self.playSoundFile(soundFileName))
+    
     def takeCar(self):
         """function to rent car
         """
@@ -89,13 +106,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.readCarCardLineEdit.setFocus()
         message = 'Lue ajokortin viivakoodi'
         self.ui.statusbar.showMessage(message)
-
+        if self.soundOn:
+            sound.playWav('sounds\\readKey.WAV')
+        if self.soundOn:
+            self.ui.takeCarPushButton.clicked.connect(self.playWavFileThread)
+ 
         
     def returnCar(self):
         """
         Purpose: function to return the car
         """
         self.ui.keyPictureLabel.show()
+        self.ui.inUseCarPlainTextEdit.show()
         self.ui.readKeyLineEdit.show()
         self.ui.returnCarPushButton.hide()
         self.ui.takeCarPushButton.hide()
@@ -105,6 +127,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.readKeyLineEdit.returnPressed.connect(self.okPushButton)
 
 
+
+    @Slot()
+    def playWavFile(self):
+        sound.playWav('sounds\\readKey.wav')
+
+    # Luodaan säie, joka suorittaa äänitiedoston soittamisen   
+    @Slot()
+    def playWavFileThread(self):
+        self.threadPool.start(self.playWavFile)        
 
 
     # Muutetaan tulostettuLabel:n sisältö: teksti ja väri
@@ -150,9 +181,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.readKeyLineEdit.setFocus()
         message = 'ota ajokortti pois lukijasta ja laita avaimenperä lukijaan'
         self.ui.statusbar.showMessage(message)
-        self.ui.readKeyLineEdit.returnPressed.connect(self.okPushButton)
-#        self.ui.readKeyLineEdit.returnPressed.connect(self.openOk)  
-        
+        self.ui.readKeyLineEdit.returnPressed.connect(self.okPushButton)     
         
     # def focusKey(self):
     #     while True:
@@ -179,11 +208,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.readKeyLineEdit.hide()
         self.ui.okButtonLabel.hide()
         self.ui.cardReadLabel.hide()
+        self.ui.inUseCarPlainTextEdit.hide()
         self.ui.cardReadLabel.setText("Ajokortti luettu")
         self.ui.rentLabel.show()
         self.ui.returnLabel.show()
         self.ui.returnCarPushButton.show()
         self.ui.takeCarPushButton.show()
+        self.ui.availableCarFrame.show()
         message = 'Aloita painamalla nappia'
         self.ui.statusbar.showMessage(message)
 
@@ -233,6 +264,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     # Tallennetaan lainauksen tiedot ja palautetaan käyttöliittymä
     def okPushButton(self):
+        self.ui.availableCarFrame.hide()
         self.ui.okButtonLabel.show()
         self.ui.carInfoLabel.show()
         self.ui.statusbar.showMessage("Jos tiedot on oikein paina OK-nappia")
@@ -243,15 +275,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     def unMute(self):
         self.soundOn = True
-        self.ui.soundPushButton.connect(self.mute)
-        pass
     
     
     def mute(self):
         self.soundOn = False
-        self.ui.soundOffPushButton.connect(self.unMute)
-        
-        pass
     
     def setLastEditedElement(self):
         self.lastEditedElementName = "firstNameLineEdit"
