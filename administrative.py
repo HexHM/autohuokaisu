@@ -149,7 +149,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dbConnection = dbOperations.DbConnection(dbSettings)
 
         # Tehdään lista lainaaja-taulun tiedoista
-        tableData = dbConnection.readAllColumnsFromTable('lainaaja')
+        tableData = dbConnection.readAllColumnsFromTable('lainaajat')
         print('Lainaajataulun tiedot:', tableData)
 
         # Määritellään taulukkoelementin otsikot

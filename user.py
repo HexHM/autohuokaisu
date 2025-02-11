@@ -29,13 +29,31 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__()
 
         # Luodanan säikeistystä varten uusi säievavanto
-        self.threadPool = QThreadPool()
+        self.threadPool = QThreadPool().globalInstance()
 
         # Luodaan käyttöliittymä konvertoidun tiedoston perusteella MainWindow:n ui-ominaisuudeksi. Tämä suojaa lopun MainWindow-olion ylikirjoitukselta, kun ui-tiedostoa päivitetään
         self.ui = Ui_MainWindow()
 
         # Kutsutaan käyttöliittymän muodostusmetodia setupUi
         self.ui.setupUi(self)
+
+            # Rutiini, joka lukee asetukset, jos ne ovat olemassa
+        try:
+            # Avataam asetustiedosto ja muutetaan se Python sanakirjaksi
+            with open('settings.json', 'rt') as settingsFile: # With sulkee tiedoston automaattisesti
+                
+                jsonData = settingsFile.read()
+                self.currentSettings = json.loads(jsonData)
+            
+            # Puretaan salasana tietokantaoperaatioita varten  
+            self.plainTextPassword = cipher.decryptString(self.currentSettings['password'])
+        # Jos asetusten luku ei onnistu, näytetään virhedialogi
+        except Exception as error:
+            title ='Tietokanta-asetusten luku ei onnustunut'
+            text = 'Tietokanta-asetuksien avaaminen ja salasanan åurku ei onnistunut'
+            detailedText = str(error)
+            self.openWarning(title, text, detailedText)
+
 
         # Ohjelman käynnistyksessö piilotetaamn tarpeettomat elementit
         self.ui.teacherPictureLabel.hide()
@@ -47,19 +65,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.personInfoLabel.hide()
         self.ui.cardReadLabel.hide()
         self.ui.inUseCarPlainTextEdit.hide()
-        
-            # Rutiini, joka lukee asetukset, jos ne ovat olemassa
-        try:
-            # Avataam asetustiedosto ja muutetaan se Python sanakirjaksi
-            with open('settings.json', 'rt') as settingsFile: # With sulkee tiedoston automaattisesti
-                
-                jsonData = settingsFile.read()
-                self.currentSettings = json.loads(jsonData)
-            
-            # Puretaan salasana tietokantaoperaatioita varten  
-            self.plainTextPassword = cipher.decryptString(self.currentSettings['password'])
-        except Exception as error:
-            self.openWarning()
 
         self.soundOn = False
         
@@ -96,7 +101,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     @Slot(str)
     def playSoundInThread(self, soundFileName):
-        self.threadPool.start(self.playSoundFile(soundFileName))
+        self.threadPool.start(lambda: self.playSoundFile(soundFileName))
     
     def takeCar(self):
         """function to rent car
@@ -217,6 +222,32 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.availableCarFrame.show()
         message = 'Aloita painamalla nappia'
         self.ui.statusbar.showMessage(message)
+        
+        # TODO: Lisää rutiini joka hakee vapaat autot
+        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+        dbConnection = dbOperations.DbConnection(self.currentSettings)
+        
+        
+        dbConnection = dbOperations.DbConnection(dbSettings)
+        freeVehicles = dbConnection.readAllColumnsFromTable('vapaana')
+
+        print(freeVehicles[row])
+        text = ''
+        freeCars = ''
+            # Asetetaan taulukon solujen arvot
+        for row in range(len(freeVehicles)): # Luetaan listaa riveittäin
+            rowValues = freeVehicles[row]
+            for column in range(len(freeVehicles[row])): # Luetaan monikkoa sarakkeittain
+                text = text + f'{rowValues[column]}' + ' '
+            freeCars = freeCars + f'{text}' + '\n'
+        print(freeCars)
+                
+                
+                # Jos asetusten luku ei onnistu, näytetään virhedialog
+        # TODO: Lisää rutiini, joka hakee ajossa olevat autot
 
 
     
