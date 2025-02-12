@@ -103,6 +103,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def playSoundInThread(self, soundFileName):
         self.threadPool.start(lambda: self.playSoundFile(soundFileName))
     
+    @Slot()
     def takeCar(self):
         """function to rent car
         """
@@ -117,6 +118,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.ui.takeCarPushButton.clicked.connect(self.playWavFileThread)
  
         
+    @Slot()
     def returnCar(self):
         """
         Purpose: function to return the car
@@ -150,7 +152,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Avataan MessageBox
     # Malli mahdollista virheilmoitusta varten
+    
     def openWarning(self, title: str, text:str, detailedText:str) -> None: 
+        
         """Opens a message box for errors
 
         Args:
@@ -165,7 +169,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         msgBox.setDetailedText(detailedText)
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
-        
+    
     def openOk(self):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Information)
@@ -174,7 +178,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
         
-        
+    @Slot()
     def showKeyLineEdit(self):
         """Shows line edit and focuses on it so that people
         can read the barcode of the key
@@ -186,16 +190,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.readKeyLineEdit.setFocus()
         message = 'ota ajokortti pois lukijasta ja laita avaimenperä lukijaan'
         self.ui.statusbar.showMessage(message)
-        self.ui.readKeyLineEdit.returnPressed.connect(self.okPushButton)     
+        self.ui.readKeyLineEdit.returnPressed.connect(self.okPushButton) 
         
-    # def focusKey(self):
-    #     while True:
-    #         int=input
-    #         if int=="":
-    #             break
-        
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+        dbConnection = dbOperations.DbConnection(self.currentSettings) 
+        # luetaan lainaajan tiedoista etunimi ja sukunimi
+        try:
+            # luodaan tietokantayhteys-olio
+            dbConnection = dbOperations.DbConnection(dbSettings)
+            criteria = f"hetu ='{self.ui.readCarCardLineEdit.text()}'"
+            resultSet = dbConnection.filterColumsFromTable('lainaaja', ['etunimi', 'sukunimi'], criteria)
+            row = resultSet[0]
+            lenderName = f'{row[0]} {row[1]}'
+            self.ui.personInfoLabel.setText(lenderName)
+            
+        except Exception as error:
+            title ='Ajokortin lukeminen ei onnustunut'
+            text = 'Ajokortin tietoja ei löytyny, ota yhteys henkilökuntaan'
+            detailedText = str(error)
+            self.openWarning(title, text, detailedText)
 
-    def resetWindowdef (self):
+
+# Palauta käyttöliittymä alkutilanteeseen ja päivittää vapaiden ja
+# ajossa olevien autojen kataloogin
+    @Slot()
+    def resetWindowdef(self):
         """
         Purpose: restarts window
         """
@@ -223,34 +244,49 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         message = 'Aloita painamalla nappia'
         self.ui.statusbar.showMessage(message)
         
-        # TODO: Lisää rutiini joka hakee vapaat autot
         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
         dbConnection = dbOperations.DbConnection(self.currentSettings)
         
-        
-        dbConnection = dbOperations.DbConnection(dbSettings)
-        freeVehicles = dbConnection.readAllColumnsFromTable('vapaana')
-
-        print(freeVehicles[row])
-        text = ''
-        freeCars = ''
-            # Asetetaan taulukon solujen arvot
-        for row in range(len(freeVehicles)): # Luetaan listaa riveittäin
-            rowValues = freeVehicles[row]
-            for column in range(len(freeVehicles[row])): # Luetaan monikkoa sarakkeittain
-                text = text + f'{rowValues[column]}' + ' '
-            freeCars = freeCars + f'{text}' + '\n'
-        print(freeCars)
+        try:
+            dbConnection = dbOperations.DbConnection(dbSettings)
+            freeVehicles = dbConnection.readAllColumnsFromTable('vapaana')
+            
+            catalogData =self.createCatalog(freeVehicles, suffix='hlö')
+            
+            self.ui.carFreePlainTextEdit.setPlainText(catalogData)
                 
                 
-                # Jos asetusten luku ei onnistu, näytetään virhedialog
+        except Exception as error:
+            title
+            text
+            detailedText = str(error)
+            self.openWarning(title, text, detailedText)
+        # Jos asetusten luku ei onnistu, näytetään virhedialog
+                
+                
         # TODO: Lisää rutiini, joka hakee ajossa olevat autot
-
+        
+        try:
+            # Luodaan tietokantayhteys-olio
+            dbConnection = dbOperations.DbConnection(dbSettings)
+            inUseVehicles = dbConnection.readAllColumnsFromTable('ajossa')
+            
+            # Muodostetaan luettelo vapaista autoista
+            catalogData =self.createCatalog(inUseVehicles)
+            self.ui.inUseCarPlainTextEdit.setPlainText(catalogData)
+                
+                
+        except Exception as error:
+            title ='ajossa luku ei onnustunut'
+            text = 'Tietokanta-asetuksien avaaminen ja salasanan åurku ei onnistunut'
+            detailedText = str(error)
+            self.openWarning(title, text, detailedText)
 
     
+
     def saveLendingData(self):
         #Tallentaa tiedot
         
@@ -287,9 +323,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                           'rekisterinumero': key}
         dbConnection.addToTable('lainaus', dataDictionary)
         
+
     def saveReturnData(self):
         key = self.ui.readKeyLineEdit.text()
-        pass
+    pass
 
     
     
@@ -303,17 +340,55 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.ui.okButtonLabel.clicked.connect(self.openOk)
         self.ui.okButtonLabel.clicked.connect(self.resetWindowdef)
         
-    
+        
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+        dbConnection = dbOperations.DbConnection(self.currentSettings) 
+        # luetaan lainaajan tiedoista etunimi ja sukunimi
+        try:
+            # luodaan tietokantayhteys-olio
+            dbConnection = dbOperations.DbConnection(dbSettings)
+            criteria = f"rekisterinumero ='{self.ui.readCarCardLineEdit.text()}'"
+            resultSet = dbConnection.filterColumsFromTable('auto', ['merkki', 'malli', 'henkilomaara'], criteria)
+            row = resultSet[0]
+            carData = f'{row[0]} {row[1]} {row[3]} hlö'
+            self.ui.carInfoLabel.setText(carData)
+            
+        except Exception as error:
+            title ='Auton avaimen lukeminen ei onnistunut'
+            text = 'Auton avaimen ei löytyny, ota yhteys henkilökuntaan'
+            detailedText = str(error)
+            self.openWarning(title, text, detailedText)
+            
+            try:
+                dbConnection = dbOperations.DbConnection(dbSettings)
+                timeStamp = dbConnection.getPgTimestamp()
+                rowValue = timeStamp[0]
+                columnValue = rowValue[0]
+                # ensimmäiset 10 merkkiä on päivämäärä
+                date = columnValue[0:10]
+                # Merkit 12-17
+                time = columnValue[11:16]
+                
+                self.ui.dateLabel.setText(date)
+                self.ui.timeLabel.setText(time)
+            except Exception as error:
+                title ='aikaleiman lukeminen ei onnistunut'
+                text = 'Yhteys palvelimeen on katkennut, tee lainaus uudelleen'
+                detailedText = str(error)
+                self.openWarning(title, text, detailedText)
+
     def unMute(self):
         self.soundOn = True
     
-    
     def mute(self):
         self.soundOn = False
-    
+        
+
     def setLastEditedElement(self):
         self.lastEditedElementName = "firstNameLineEdit"
-        
+
     def showLastElementName(self):
         message = f"viimeksi käytetty kenttä on {self.lastEditedElementName}"
         self.ui.statusbar.showMessage(message)
@@ -322,10 +397,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
         self.ui.firstNameLineEdit.editingFinished.connect(self.setLastEditedElement)
         self.ui.lastFocusButton.returnpressed.connect(self.showLastElementName)
-        
-                
-         
-         
+
+    # Metodi monirivisen luettelon muodostamiseen taulun tai näkymän datasta
+    @Slot()
+    def createCatalog(self,tupleList: list, suffix: str = '') -> str:
+        """Creates acatalog like text for plainText edits from list of tuples.
+        Typically list comes from a database table or view
+
+        Args:
+            tupleList (list):list of tuples containing table data
+            suffix (_type_, optional): a phrase to add to the end of the line. Defaults to '':str.
+
+        Returns:
+            str: plain text for the catalog
+        """
+        # Määritellään vapaana olevien autojen tiedot
+        # availablePlainTextEdit-elementtiin
+        catalogData = ''
+        rowText = ''
+            
+        for vehiclTtuple in tupleList:
+            rowData = ''
+            for vehicleData in vehiclTtuple:
+                    rowData = f'{rowData}{vehicleData} '
+            rowText = f'{rowData}{suffix}\n'
+            catalogData = catalogData + rowText
+            
+            return catalogData + rowText
+        self.ui.carFreePlainTextEdit.setPlainText(catalogData)
+
+
     
 # LUODAAN VARSINAINEN SOVELLUS
 # ============================
