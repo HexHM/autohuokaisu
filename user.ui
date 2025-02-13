@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>600</height>
+    <width>1366</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -92,8 +92,8 @@ background-color: rgb(255, 255, 127);</string>
    <widget class="QLabel" name="keyPictureLabel">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>290</y>
+      <x>570</x>
+      <y>280</y>
       <width>171</width>
       <height>111</height>
      </rect>
@@ -114,7 +114,7 @@ background-color: rgb(255, 255, 127);</string>
    <widget class="QLabel" name="teacherPictureLabel">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>560</x>
       <y>-10</y>
       <width>201</width>
       <height>191</height>
@@ -134,7 +134,7 @@ background-color: rgb(255, 255, 127);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>260</y>
       <width>291</width>
       <height>231</height>
      </rect>
@@ -169,7 +169,7 @@ background-color: rgb(255, 255, 127);</string>
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>410</y>
+      <y>400</y>
       <width>251</width>
       <height>41</height>
      </rect>
@@ -203,7 +203,7 @@ color: rgb(32, 75, 70);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>260</y>
       <width>291</width>
       <height>231</height>
      </rect>
@@ -256,7 +256,7 @@ color: rgb(255, 255, 255);</string>
       <x>310</x>
       <y>0</y>
       <width>201</width>
-      <height>151</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="text">
@@ -279,7 +279,7 @@ color: rgb(255, 255, 255);</string>
       <x>310</x>
       <y>0</y>
       <width>201</width>
-      <height>151</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="text">
@@ -329,7 +329,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>260</y>
       <width>291</width>
       <height>231</height>
      </rect>
@@ -358,9 +358,9 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>160</y>
-      <width>211</width>
-      <height>351</height>
+      <y>150</y>
+      <width>201</width>
+      <height>341</height>
      </rect>
     </property>
     <property name="font">
@@ -401,7 +401,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>460</y>
+      <y>440</y>
       <width>241</width>
       <height>71</height>
      </rect>
@@ -446,13 +446,13 @@ color: rgb(0, 0, 0);</string>
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QFrame" name="availableCarFrame">
+   <widget class="QFrame" name="inUseCarFrame">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>160</y>
-      <width>221</width>
-      <height>351</height>
+      <x>810</x>
+      <y>380</y>
+      <width>531</width>
+      <height>321</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -461,67 +461,96 @@ color: rgb(0, 0, 0);</string>
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QPlainTextEdit" name="carFreePlainTextEdit">
+    <widget class="QLabel" name="inUseCarLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>10</y>
-       <width>221</width>
-       <height>341</height>
+       <width>211</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>9</pointsize>
+       <pointsize>12</pointsize>
        <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::Panel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Plain</enum>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-     <property name="plainText">
-      <string>Vapaat ajoneuvot:</string>
+     <property name="text">
+      <string>AJOSSA:</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="inUseCarPlainTextEdit">
+    <widget class="QPlainTextEdit" name="inUseInfoPlainTextEdit">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>10</y>
-       <width>221</width>
-       <height>341</height>
+       <y>50</y>
+       <width>531</width>
+       <height>271</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-border-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::Shape::Box</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Plain</enum>
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="readOnly">
       <bool>true</bool>
      </property>
-     <property name="plainText">
-      <string>Ajossa:</string>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="availableCarFrame">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>50</y>
+      <width>531</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLabel" name="freeCarLabel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>211</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>VAPAANA:</string>
+     </property>
+    </widget>
+    <widget class="QPlainTextEdit" name="freeCarInfoPlainTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>531</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -541,6 +570,7 @@ border-color: rgb(255, 255, 255);</string>
    <zorder>personInfoLabel</zorder>
    <zorder>carInfoLabel</zorder>
    <zorder>cardReadLabel</zorder>
+   <zorder>inUseCarFrame</zorder>
    <zorder>availableCarFrame</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar">
@@ -607,28 +637,12 @@ color: rgb(255, 255, 255);</string>
    <slot>hide()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>166</x>
-     <y>223</y>
+     <x>676</x>
+     <y>693</y>
     </hint>
     <hint type="destinationlabel">
-     <x>178</x>
-     <y>354</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>takeCarPushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>takeCarPushButton</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>131</x>
-     <y>67</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>154</x>
-     <y>63</y>
+     <x>168</x>
+     <y>544</y>
     </hint>
    </hints>
   </connection>
@@ -639,12 +653,12 @@ color: rgb(255, 255, 255);</string>
    <slot>hide()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>98</x>
-     <y>244</y>
+     <x>608</x>
+     <y>714</y>
     </hint>
     <hint type="destinationlabel">
-     <x>57</x>
-     <y>356</y>
+     <x>27</x>
+     <y>306</y>
     </hint>
    </hints>
   </connection>
@@ -655,12 +669,12 @@ color: rgb(255, 255, 255);</string>
    <slot>hide()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>355</y>
+     <x>238</x>
+     <y>545</y>
     </hint>
     <hint type="destinationlabel">
-     <x>39</x>
-     <y>225</y>
+     <x>99</x>
+     <y>245</y>
     </hint>
    </hints>
   </connection>
@@ -675,7 +689,7 @@ color: rgb(255, 255, 255);</string>
      <y>138</y>
     </hint>
     <hint type="destinationlabel">
-     <x>518</x>
+     <x>650</x>
      <y>192</y>
     </hint>
    </hints>
@@ -691,7 +705,7 @@ color: rgb(255, 255, 255);</string>
      <y>117</y>
     </hint>
     <hint type="destinationlabel">
-     <x>551</x>
+     <x>661</x>
      <y>193</y>
     </hint>
    </hints>
@@ -704,11 +718,11 @@ color: rgb(255, 255, 255);</string>
    <hints>
     <hint type="sourcelabel">
      <x>420</x>
-     <y>165</y>
+     <y>140</y>
     </hint>
     <hint type="destinationlabel">
-     <x>547</x>
-     <y>424</y>
+     <x>657</x>
+     <y>414</y>
     </hint>
    </hints>
   </connection>
@@ -723,8 +737,8 @@ color: rgb(255, 255, 255);</string>
      <y>113</y>
     </hint>
     <hint type="destinationlabel">
-     <x>514</x>
-     <y>417</y>
+     <x>650</x>
+     <y>407</y>
     </hint>
    </hints>
   </connection>
@@ -772,7 +786,23 @@ color: rgb(255, 255, 255);</string>
     </hint>
     <hint type="destinationlabel">
      <x>773</x>
-     <y>242</y>
+     <y>220</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>returnCarPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>takeCarPushButton</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>231</x>
+     <y>597</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>538</x>
+     <y>615</y>
     </hint>
    </hints>
   </connection>
